@@ -15,17 +15,24 @@ def read_file(file_name : str, file_sep : str = ",", file_header : int = 0):
     return df
 
 def split_name(df : pandas.DataFrame):
-
-
     if "name" in df.columns:
         df[["firstname", "lastname"]] = df["name"].str.split(pat = " ", n = 1, expand = True)
         return df
     else:
         raise("Column 'name' not in dataframe")
 
+def filter_name(df : pandas.DataFrame):
+    if "name" in df.columns:
+        return df[(df["name"].str.len() > 0)]
+    else:
+        raise("Column 'name' not in dataframe")
+
 if __name__ == "__main__" :
     try:
         df = read_file("dataset.csv")
+        print(df)
+
+        df = filter_name(df)
         print(df)
 
         df = split_name(df)
