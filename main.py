@@ -54,5 +54,7 @@ if __name__ == "__main__" :
         df = price_above100(df)
         print(df)
 
+        df.to_csv("processed_dataset.csv", sep=",", header=True, index=False)
+
     except Exception as e:
         print(e)
